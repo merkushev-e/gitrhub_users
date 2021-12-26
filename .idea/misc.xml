@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../Library/Android/sdk/platforms/android-31/data/res/layout/auto_complete_list.xml" value="0.12135416666666667" />
+        <entry key="..\:/Android/RXDagger/Home/GeekBrains_PopularLib-serverInteraction/GeekBrains_PopularLib-serverInteraction/app/src/main/res/layout/view_user.xml" value="0.3111413043478261" />
+        <entry key="..\:/Android/RXDagger/Home/GeekBrains_PopularLib-serverInteraction/GeekBrains_PopularLib-serverInteraction/app/src/main/res/layout/view_user_detail.xml" value="0.3111413043478261" />
+        <entry key="..\:/Android/RXDagger/Home/GeekBrains_PopularLib-serverInteraction/GeekBrains_PopularLib-serverInteraction/app/src/main/res/layout/view_users.xml" value="0.3111413043478261" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1453125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.10416666666666667" />
+        <entry key="app/src/main/res/layout/view_user.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/view_users.xml" value="0.12135416666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
