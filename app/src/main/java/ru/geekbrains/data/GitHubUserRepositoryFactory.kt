@@ -4,6 +4,6 @@ import ru.geekbrains.App
 
 object GitHubUserRepositoryFactory {
 
-    fun create(): GitHubUserRepository = GitHubUserRepositoryImpl(App.getHistoryDao())
+//    fun create(): GitHubUserRepository = GitHubUserRepositoryImpl(App.getHistoryDao())
 
 }

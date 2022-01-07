@@ -4,23 +4,28 @@ package ru.geekbrains.data
 import androidx.lifecycle.Transformations.map
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import ru.geekbrains.data.retrofit.GitHubApi
+import ru.geekbrains.data.room.GitHubUserDb
 import ru.geekbrains.data.room.GitHubUserEntity
 import ru.geekbrains.data.room.GitHubUsersDao
+import javax.inject.Inject
 
 
-class GitHubUserRepositoryImpl(
-    private val localDataSourceDao: GitHubUsersDao,
+class GitHubUserRepositoryImpl
+    @Inject constructor(
+    private val gitHubApi: GitHubApi,
+    private val localDataSourceDao: GitHubUserDb,
 ) : GitHubUserRepository {
 
-    private val gitHubApi = GitHubApiFactory.create()
+//    private val gitHubApi = GitHubApiFactory.create()
 
     override fun getUsers(): Single<List<GitHubUser>> {
-        return localDataSourceDao.getUsers()
+        return localDataSourceDao.getGitHubUserDao().getUsers()
             .flatMap {
                 if (it.isEmpty()) {
                     gitHubApi.fetchUsers()
                         .map { resultFromServer ->
-                            localDataSourceDao.saveUsers(mapUserListToEntityList(resultFromServer))
+                            localDataSourceDao.getGitHubUserDao().saveUsers(mapUserListToEntityList(resultFromServer))
                             resultFromServer
                         }
                 } else {
@@ -40,14 +45,14 @@ class GitHubUserRepositoryImpl(
 //
 //        return mapEntityToUserSingle(user)
 
-        return localDataSourceDao.getUserByLogin(userId)
+        return localDataSourceDao.getGitHubUserDao().getUserByLogin(userId)
             .flatMap { user ->
                 if(user.location == "" ){
                     gitHubApi.fetchUserByLogin(userId)
                         .map{
                             resultFromServer ->
                             val userEntity = mapUserToEntity(resultFromServer)
-                            localDataSourceDao.saveUser(userEntity)
+                            localDataSourceDao.getGitHubUserDao().saveUser(userEntity)
                             resultFromServer
                         }
                 }else{
