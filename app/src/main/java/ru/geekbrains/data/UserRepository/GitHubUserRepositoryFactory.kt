@@ -1,4 +1,4 @@
-package ru.geekbrains.data
+package ru.geekbrains.data.UserRepository
 
 import ru.geekbrains.App
 

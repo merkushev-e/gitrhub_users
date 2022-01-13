@@ -1,12 +1,11 @@
-package ru.geekbrains.data
+package ru.geekbrains.data.UserRepository
 
 
 
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import ru.geekbrains.data.GitHubUser
 import ru.geekbrains.data.retrofit.GitHubApi
-import ru.geekbrains.data.room.Repos.GitHubReposDb
-import ru.geekbrains.data.room.Repos.GitHubReposEntity
 import ru.geekbrains.data.room.Users.GitHubUserDb
 import ru.geekbrains.data.room.Users.GitHubUserEntity
 import javax.inject.Inject
@@ -141,7 +140,7 @@ class GitHubUserRepositoryImpl
             location = user.location
         )
     }
-    private fun mapEntityToUser(userEntity: GitHubUserEntity) : GitHubUser{
+    private fun mapEntityToUser(userEntity: GitHubUserEntity) : GitHubUser {
         return GitHubUser(
             id = userEntity.id ?: "",
             login = userEntity.login ?: "",

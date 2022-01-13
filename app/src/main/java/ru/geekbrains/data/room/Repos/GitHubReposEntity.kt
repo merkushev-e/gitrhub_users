@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class GitHubReposEntity (
     @PrimaryKey
     val id: String,
-    val name: String
+    val name: String,
+    val user_id: String,
 )

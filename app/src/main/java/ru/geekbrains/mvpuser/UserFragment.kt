@@ -46,12 +46,7 @@ class UserFragment: MvpAppCompatFragment(R.layout.view_user_detail), UserView, R
     }
 
     override fun showRecyclerList(repos: List<GitHubRepos>) {
-//        val array = listOf<GitHubRepos>(
-//            GitHubRepos("1","rere"),
-//            GitHubRepos("2","656"),
-//            GitHubRepos("3","hjg"),
-//
-//        )
+
         reposAdapter.submitList(repos)
     }
 
