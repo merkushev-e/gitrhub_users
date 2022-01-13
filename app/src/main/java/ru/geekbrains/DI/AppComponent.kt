@@ -16,7 +16,9 @@ import javax.inject.Singleton
         NetworkModule::class,
         CiceroneModule::class,
         RepositoryModule::class,
-        RoomModule::class
+        RepositoryReposModule::class,
+        RoomModule::class,
+        RoomReposModule::class
     ]
 )
 

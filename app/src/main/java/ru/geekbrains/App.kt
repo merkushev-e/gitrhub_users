@@ -1,14 +1,8 @@
 package ru.geekbrains
 
 import android.app.Application
-import androidx.room.Room
-import com.github.terrakok.cicerone.Cicerone
 import ru.geekbrains.DI.AppComponent
-import ru.geekbrains.DI.AppModule
 import ru.geekbrains.DI.DaggerAppComponent
-import ru.geekbrains.data.room.GitHubUserDb
-import ru.geekbrains.data.room.GitHubUsersDao
-import ru.geekbrains.navigation.CustomRouter
 
 class App: Application() {
 

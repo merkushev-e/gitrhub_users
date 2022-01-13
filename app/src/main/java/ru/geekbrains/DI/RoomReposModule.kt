@@ -4,21 +4,21 @@ import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import ru.geekbrains.data.room.Users.GitHubUserDb
+import ru.geekbrains.data.room.Repos.GitHubReposDb
 import javax.inject.Singleton
 
 @Module
-class RoomModule {
+class RoomReposModule {
     companion object {
-        private const val DB_NAME = "GitHubUsers.db"
+        private const val DB_NAME = "GitHubRepos.db"
     }
 
     @Singleton
     @Provides
-    fun providesRoomModule(app: Context): GitHubUserDb {
+    fun providesRoomModule(app: Context): GitHubReposDb {
         return Room.databaseBuilder(
             app,
-            GitHubUserDb::class.java,
+            GitHubReposDb::class.java,
             DB_NAME
         )
             .build()

@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -32,5 +33,12 @@
         android:textColor="@android:color/black"
         android:textSize="24sp"
         tools:text="location" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/repositories_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/view_repos"/>
 
 </LinearLayout>

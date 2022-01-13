@@ -1,4 +1,4 @@
-package ru.geekbrains.data.room
+package ru.geekbrains.data.room.Users
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

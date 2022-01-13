@@ -1,20 +1,21 @@
 package ru.geekbrains.data
 
 
-import androidx.lifecycle.Transformations.map
+
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import ru.geekbrains.data.retrofit.GitHubApi
-import ru.geekbrains.data.room.GitHubUserDb
-import ru.geekbrains.data.room.GitHubUserEntity
-import ru.geekbrains.data.room.GitHubUsersDao
+import ru.geekbrains.data.room.Repos.GitHubReposDb
+import ru.geekbrains.data.room.Repos.GitHubReposEntity
+import ru.geekbrains.data.room.Users.GitHubUserDb
+import ru.geekbrains.data.room.Users.GitHubUserEntity
 import javax.inject.Inject
 
 
 class GitHubUserRepositoryImpl
     @Inject constructor(
-    private val gitHubApi: GitHubApi,
-    private val localDataSourceDao: GitHubUserDb,
+        private val gitHubApi: GitHubApi,
+        private val localDataSourceDao: GitHubUserDb,
 ) : GitHubUserRepository {
 
 //    private val gitHubApi = GitHubApiFactory.create()
@@ -34,6 +35,25 @@ class GitHubUserRepositoryImpl
             }
             .subscribeOn(Schedulers.io())
     }
+
+//    override fun getRepositoriesList(userId: String): Single<List<GitHubRepos>> {
+//        val result = gitHubApi.fetchUserRepositories(userId)
+//        return result
+////        return localDataSourceReposDao.getGitHubReposDao().getRepos().flatMap {
+////            if(it.isEmpty()) {
+////                gitHubApi.fetchUserRepositories(userId)
+////                    .map {
+////                            result ->
+////                        val reposEntity = mapReposListToEntityList(result)
+////                        localDataSourceReposDao.getGitHubReposDao().saveUsers(reposEntity)
+////                        result
+////                    }
+////            }else{
+////                Single.just(mapEntityListToReposList(it))
+////            }
+////        }
+//    }
+
 
     override fun getUserByLogin(userId: String): Single<GitHubUser> {
 
@@ -62,6 +82,13 @@ class GitHubUserRepositoryImpl
             .subscribeOn(Schedulers.io())
 
     }
+
+
+
+
+
+
+
 
 
     private fun mapUserListToEntityList(userListFromServer: List<GitHubUser>): List<GitHubUserEntity> {
@@ -105,7 +132,7 @@ class GitHubUserRepositoryImpl
 //
 //    }
 
-    private fun mapUserToEntity(user: GitHubUser) : GitHubUserEntity{
+    private fun mapUserToEntity(user: GitHubUser) : GitHubUserEntity {
         return GitHubUserEntity(
             id = user.id ?: "",
             login = user.login ?: "",
