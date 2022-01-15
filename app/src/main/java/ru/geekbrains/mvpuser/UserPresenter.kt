@@ -56,15 +56,6 @@ class UserPresenter(
                 })
     }
 
-//    fun updateContent() {
-//        userRepository.getUsers()
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe({
-//                viewState.showUsers(it)
-//            },{
-//                val errorMessage = it.message
-//                //DisplayError
-//            })
-//    }
+
+
 }
