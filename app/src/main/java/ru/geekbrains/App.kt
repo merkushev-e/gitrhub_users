@@ -3,11 +3,14 @@ package ru.geekbrains
 import android.app.Application
 import ru.geekbrains.DI.AppComponent
 import ru.geekbrains.DI.DaggerAppComponent
+import ru.geekbrains.mvpuser.di.UserComponent
 
 class App: Application() {
 
 
     lateinit var component: AppComponent
+
+    private var userComponent: UserComponent? = null
 
     companion object{
         lateinit var instance: App
@@ -21,6 +24,14 @@ class App: Application() {
             .setContext(this)
             .build()
 
+    }
+
+    fun initUserComponent() = component.provideUserComponent().build().apply {
+        userComponent = this
+    }
+
+    fun destroyUserComponent() {
+        userComponent = null
     }
 
 

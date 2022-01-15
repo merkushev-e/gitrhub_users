@@ -5,6 +5,9 @@ import dagger.BindsInstance
 import dagger.Component
 import ru.geekbrains.MainActivity
 import ru.geekbrains.mvpuser.UserPresenter
+import ru.geekbrains.mvpuser.di.RepositoryReposModule
+import ru.geekbrains.mvpuser.di.RoomReposModule
+import ru.geekbrains.mvpuser.di.UserComponent
 import ru.geekbrains.mvpusers.UsersPresenter
 import javax.inject.Singleton
 
@@ -16,13 +19,14 @@ import javax.inject.Singleton
         NetworkModule::class,
         CiceroneModule::class,
         RepositoryModule::class,
-        RepositoryReposModule::class,
         RoomModule::class,
-        RoomReposModule::class
     ]
 )
 
 interface AppComponent {
+
+
+    fun provideUserComponent(): UserComponent.Builder
 
     @Component.Builder
     interface Builder {
@@ -34,6 +38,6 @@ interface AppComponent {
     }
 
     fun inject(activity: MainActivity)
-    fun inject(activity: UsersPresenter)
-    fun inject(activity: UserPresenter)
+    fun inject(usersPresenter: UsersPresenter)
+    fun inject(userPresenter: UserPresenter)
 }

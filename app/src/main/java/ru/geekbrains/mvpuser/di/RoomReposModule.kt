@@ -1,4 +1,4 @@
-package ru.geekbrains.DI
+package ru.geekbrains.mvpuser.di
 
 import android.content.Context
 import androidx.room.Room
@@ -13,7 +13,7 @@ class RoomReposModule {
         private const val DB_NAME = "GitHubRepos.db"
     }
 
-    @Singleton
+    @UserScope
     @Provides
     fun providesRoomModule(app: Context): GitHubReposDb {
         return Room.databaseBuilder(

@@ -24,10 +24,18 @@ class UserFragment: MvpAppCompatFragment(R.layout.view_user_detail), UserView, R
         arguments?.getString(ARG_USER_LOGIN).orEmpty()
     }
 
+    private val userComponent by lazy {
+        App.instance.initUserComponent()
+    }
+
     private val presenter: UserPresenter by moxyPresenter {
         UserPresenter(
             userLogin = userLogin,
-        ).apply {  App.instance.component.inject(this)}
+        ).apply {
+            App.instance.component.inject(this)
+            userComponent.inject(this)
+
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
