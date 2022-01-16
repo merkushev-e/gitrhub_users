@@ -39,5 +39,4 @@ interface AppComponent {
 
     fun inject(activity: MainActivity)
     fun inject(usersPresenter: UsersPresenter)
-    fun inject(userPresenter: UserPresenter)
 }

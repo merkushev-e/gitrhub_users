@@ -32,7 +32,6 @@ class UserFragment: MvpAppCompatFragment(R.layout.view_user_detail), UserView, R
         UserPresenter(
             userLogin = userLogin,
         ).apply {
-            App.instance.component.inject(this)
             userComponent.inject(this)
 
         }
