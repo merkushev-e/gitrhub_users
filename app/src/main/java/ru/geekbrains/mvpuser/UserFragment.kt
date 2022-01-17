@@ -1,38 +1,49 @@
 package ru.geekbrains.mvpuser
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
-import ru.geekbrains.App.Navigation.router
+import ru.geekbrains.App
 import ru.geekbrains.R
+import ru.geekbrains.data.GitHubRepos
 import ru.geekbrains.data.GitHubUser
-import ru.geekbrains.data.GitHubUserRepositoryFactory
-import ru.geekbrains.databinding.ViewUserBinding
 import ru.geekbrains.databinding.ViewUserDetailBinding
+import ru.geekbrains.mvpuser.recycler.ReposAdapter
+import ru.geekbrains.recycler.UsersAdapter
 
-class UserFragment: MvpAppCompatFragment(R.layout.view_user_detail), UserView {
+class UserFragment: MvpAppCompatFragment(R.layout.view_user_detail), UserView, ReposAdapter.OnReposClickListener {
 
+    private val reposAdapter = ReposAdapter(this)
     private lateinit var viewBinding: ViewUserDetailBinding
 
     private val userLogin: String by lazy {
         arguments?.getString(ARG_USER_LOGIN).orEmpty()
     }
 
+    private val userComponent by lazy {
+        App.instance.initUserComponent()
+    }
+
     private val presenter: UserPresenter by moxyPresenter {
         UserPresenter(
             userLogin = userLogin,
-            userRepository = GitHubUserRepositoryFactory.create(),
-            router = router
-        )
+        ).apply {
+            userComponent.inject(this)
+
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding = ViewUserDetailBinding.bind(view)
         viewBinding.userLogin.text = userLogin
+        viewBinding.repositoriesRecycler.adapter = reposAdapter
     }
 
     override fun showInfo(user: GitHubUser) {
@@ -40,7 +51,30 @@ class UserFragment: MvpAppCompatFragment(R.layout.view_user_detail), UserView {
         Glide.with(viewBinding.userAvatar.context)
             .load(user.avatarUrl)
             .into(viewBinding.userAvatar)
+
     }
+
+    override fun showRecyclerList(repos: List<GitHubRepos>) {
+
+        reposAdapter.submitList(repos)
+    }
+
+    override fun showStateLoader(visibility: Boolean) {
+        val visible = if (visibility){
+            View.VISIBLE
+        } else{
+            View.GONE
+        }
+        viewBinding.progressBar.visibility = visible
+    }
+
+    override fun showError(action: (View) -> Unit) {
+    Snackbar
+            .make(viewBinding.userMain, "Connection Error", Snackbar.LENGTH_INDEFINITE)
+            .setAction("Reload") {action(viewBinding.userMain)}
+            .show()
+    }
+
 
     companion object {
         private const val ARG_USER_LOGIN = "arg_user_login"
@@ -51,5 +85,9 @@ class UserFragment: MvpAppCompatFragment(R.layout.view_user_detail), UserView {
                     putString(ARG_USER_LOGIN, userId)
                 }
             }
+    }
+
+    override fun onReposClicked(repos: GitHubRepos) {
+        Toast.makeText(requireContext(),"Item Clicked", Toast.LENGTH_SHORT).show()
     }
 }

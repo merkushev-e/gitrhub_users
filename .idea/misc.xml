@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../Library/Android/sdk/platforms/android-31/data/res/layout/auto_complete_list.xml" value="0.12135416666666667" />
+        <entry key="..\:/Android/RXDagger/Home/GeekBrains_PopularLib-serverInteraction/GeekBrains_PopularLib-serverInteraction/app/src/main/res/layout/activity_main.xml" value="0.17604166666666668" />
+        <entry key="..\:/Android/RXDagger/Home/GeekBrains_PopularLib-serverInteraction/GeekBrains_PopularLib-serverInteraction/app/src/main/res/layout/view_repos.xml" value="0.19583333333333333" />
         <entry key="..\:/Android/RXDagger/Home/GeekBrains_PopularLib-serverInteraction/GeekBrains_PopularLib-serverInteraction/app/src/main/res/layout/view_user.xml" value="0.3111413043478261" />
-        <entry key="..\:/Android/RXDagger/Home/GeekBrains_PopularLib-serverInteraction/GeekBrains_PopularLib-serverInteraction/app/src/main/res/layout/view_user_detail.xml" value="0.3111413043478261" />
-        <entry key="..\:/Android/RXDagger/Home/GeekBrains_PopularLib-serverInteraction/GeekBrains_PopularLib-serverInteraction/app/src/main/res/layout/view_users.xml" value="0.3111413043478261" />
+        <entry key="..\:/Android/RXDagger/Home/GeekBrains_PopularLib-serverInteraction/GeekBrains_PopularLib-serverInteraction/app/src/main/res/layout/view_user_detail.xml" value="0.22" />
+        <entry key="..\:/Android/RXDagger/Home/GeekBrains_PopularLib-serverInteraction/GeekBrains_PopularLib-serverInteraction/app/src/main/res/layout/view_users.xml" value="0.25" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1453125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.10416666666666667" />
         <entry key="app/src/main/res/layout/view_user.xml" value="0.25" />

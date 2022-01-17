@@ -1,8 +1,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/progress_bar"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,5 +46,15 @@
         android:textColor="@android:color/black"
         android:textSize="24sp"
         tools:text="location" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/repositories_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/view_repos"/>
+
+
+
 
 </LinearLayout>
