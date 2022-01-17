@@ -24,15 +24,18 @@ class UsersPresenter: MvpPresenter<UsersView>() {
         router.navigateTo(UserScreen(login))
     }
 
-    fun updateContent() {
+    private fun updateContent() {
+        viewState.showStateLoader(true)
         userRepository.getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doFinally { viewState.showStateLoader(false) }
             .subscribe({
                 viewState.showUsers(it)
             },{
-                val errorMessage = it.message
-                //DisplayError
+                viewState.showError { updateContent() }
             })
     }
+
+
 }

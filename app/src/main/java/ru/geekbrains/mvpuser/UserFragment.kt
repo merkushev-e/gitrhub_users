@@ -1,10 +1,12 @@
 package ru.geekbrains.mvpuser
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import ru.geekbrains.App
@@ -55,6 +57,22 @@ class UserFragment: MvpAppCompatFragment(R.layout.view_user_detail), UserView, R
     override fun showRecyclerList(repos: List<GitHubRepos>) {
 
         reposAdapter.submitList(repos)
+    }
+
+    override fun showStateLoader(visibility: Boolean) {
+        val visible = if (visibility){
+            View.VISIBLE
+        } else{
+            View.GONE
+        }
+        viewBinding.progressBar.visibility = visible
+    }
+
+    override fun showError(action: (View) -> Unit) {
+    Snackbar
+            .make(viewBinding.userMain, "Connection Error", Snackbar.LENGTH_INDEFINITE)
+            .setAction("Reload") {action(viewBinding.userMain)}
+            .show()
     }
 
 

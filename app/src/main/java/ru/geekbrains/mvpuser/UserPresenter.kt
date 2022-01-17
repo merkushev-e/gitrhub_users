@@ -23,12 +23,11 @@ class UserPresenter(
     lateinit var router: Router
 
     override fun onFirstViewAttach() {
-        updateReposContent(userLogin)
-        updateUserContent(userLogin)
+        loadData()
 
     }
 
-    fun updateUserContent(userLogin: String) {
+    private fun updateUserContent(userLogin: String) {
         userRepository
             .getUserByLogin(userLogin)
             .subscribeOn(Schedulers.io())
@@ -38,24 +37,31 @@ class UserPresenter(
 
             },
                 {
-                    //todo
+                    viewState.showError { updateReposContent(userLogin) }
                 })
     }
 
 
-    fun updateReposContent(userLogin: String) {
+    private fun updateReposContent(userLogin: String) {
+        viewState.showStateLoader(true)
         reposRepository
             .getRepositoriesList(userLogin)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doFinally { viewState.showStateLoader(false) }
             .subscribe({
                 viewState.showRecyclerList(it)
             },
                 {
-                    //todo
+                    viewState.showError { updateUserContent(userLogin) }
                 })
     }
 
+
+    fun loadData(){
+        updateReposContent(userLogin)
+        updateUserContent(userLogin)
+    }
 
 
 }
